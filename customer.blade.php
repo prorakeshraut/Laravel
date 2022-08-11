@@ -10,20 +10,42 @@
             content: " *";
             color: red;
         }
+       
     </style>
     <title>Form</title>
 </head>
   <body class="bg-dark">
-  <form action="{{url('/')}}/customer" method="post">
+  <div class="navbar navbar-expand-sm" style="padding-left:80px;">
+            <a class="navbar-brand" href="#" style="color: white">Rakesh Raut</a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-expand="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">
+
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsebleNavId">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/')}}" style="color: white">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/register')}}" style="color: white">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/customer/view')}}" style="color: white">Customer</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+  <form action="{{$url}}" method="post">
    @csrf
         <div class="container mt-4 card p-3 bg-white">
             <h3 class="text-center text-primary">
-                Customer Registration
+                {{$title}}
             </h3>
                 <div class="row">
                     <div class="form-group col-md-6 required">
                         <label for="">Name:</label>
-                        <input type="text" name="name" id="" class="form-control">
+                        <input type="text" name="name" id="" class="form-control" value="{{$customer->name}}">
                         <span class="text-danger">
                             @error('name')
                             {{$message}}
@@ -33,7 +55,7 @@
                 
                     <div class="form-group col-md-6 required">
                         <label for="">Email:</label>
-                        <input type="text" name="email" id="" class="form-control">
+                        <input type="text" name="email" id="" class="form-control" value="{{$customer->email}}">
                         <span class="text-danger">
                             @error('email')
                             {{$message}}
@@ -65,7 +87,7 @@
                 <div class="row">
                     <div class="form-group col-md-6 required">
                         <label for="">Country:</label>
-                        <input type="text" name="country" id="" class="form-control">
+                        <input type="text" name="country" id="" class="form-control" value="{{$customer->country}}">
                         <span class="text-danger">
                             @error('country')
                             {{$message}}
@@ -75,7 +97,7 @@
                 
                     <div class="form-group col-md-6 required">
                         <label for="">State:</label>
-                        <input type="text" name="state" id="" class="form-control">
+                        <input type="text" name="state" id="" class="form-control" value="{{$customer->state}}">
                         <span class="text-danger">
                             @error('state')
                             {{$message}}
@@ -86,7 +108,7 @@
                 <div class="row">
                     <div class="form-group col-md-6 required">
                         <label for="">Address:</label>
-                        <input type="text" name="address" id="" class="form-control">
+                        <input type="text" name="address" id="" class="form-control" value="{{$customer->address}}">
                         <span class="text-danger">
                             @error('address')
                             {{$message}}
@@ -98,11 +120,14 @@
                 <div class="row">
                     <div class="form-group col-md-6 required">
                             <label for="">Gender:</label>
-                         <input type="radio" name="gender" value="male" >
+                         <input type="radio" name="gender" value="male" 
+                         {{$customer->gender == "male" ? "checked" : ""}}>
                          <label for="">Male</label>
-                         <input type="radio" name="gender" value="female">
+                         <input type="radio" name="gender" value="female"
+                         {{$customer->gender == "female" ? "checked" : ""}}>
                          <label for="">Female</label>
-                         <input type="radio" name="gender" value="others">
+                         <input type="radio" name="gender" value="others"
+                         {{$customer->gender == "others" ? "checked" : ""}}>
                          <label for="">Others</label>
                        
                             <span class="text-danger">
@@ -114,7 +139,7 @@
                     
                         <div class="form-group col-md-6 required">
                             <label for="">Date of Birth:</label>
-                            <input type="date" name="dob" id="" class="form-control">
+                            <input type="date" name="dob" id="" class="form-control" value="{{$customer->dob}}">
                             <span class="text-danger">
                                 @error('date')
                                 {{$message}}
